@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <tabs>
-      <tab name="first" :selected="true">first</tab>
-      <tab name="second">second</tab>
+      <tab name="first" :selected="true">
+        <input-salary @submit="addSalary($event, 'employeeMinimumPay')" v-if="!employeeMinimumPay"></input-salary>
+      </tab>
+      <tab name="second">
+        <input-salary @submit="addSalary($event, 'employerMaximumPay')" v-if="!employerMaximumPay"></input-salary>
+      </tab>
     </tabs>
   </div>
 </template>
@@ -11,13 +15,31 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Tabs from './components/Tabs.vue';
 import Tab from './components/Tab.vue';
+import InputSalary from './components/InputSalary.vue';
 @Component({
   components: {
     Tabs,
     Tab,
+    InputSalary,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  public employeeMinimumPay = 0;
+  public employerMaximumPay = 0;
+  public addSalary(salary: number, salaryFor: 'employeeMinimumPay' | 'employerMaximumPay') {
+    this[salaryFor] = salary;
+    this.negotiate();
+  }
+  private negotiate() {
+    if ( this.employeeMinimumPay && this.employerMaximumPay) {
+      if (this.employeeMinimumPay <= this.employerMaximumPay) {
+        alert('success');
+      } else {
+        alert('failure');
+      }
+    }
+  }
+}
 </script>
 
 <style>
