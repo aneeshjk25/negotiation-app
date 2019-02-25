@@ -8,7 +8,7 @@ describe('Dialog.vue', () => {
   beforeEach(() => {
     options = {
       propsData: {
-        success: true,
+        isSuccess: true,
         employerMaximumPay: 100,
         employeeMinimumPay: 200,
        },
@@ -19,28 +19,28 @@ describe('Dialog.vue', () => {
   });
   it('renders maximum and minimum salary', () => {
     const wrapper = mount(Dialog, options);
-    expect(wrapper.html()).to.contain(`<p>Maximum offer was 100</p>`);
-    expect(wrapper.html()).to.contain(`<p>Minimum expected salary was 200</p>`);
+    expect(wrapper.html()).to.contain(`Maximum offer was 100`);
+    expect(wrapper.html()).to.contain(`Minimum expected salary was 200`);
   });
   it('should show weather for london', () => {
     const wrapper = mount(Dialog, options);
     wrapper.setData({temperature: 10});
-    expect(wrapper.html()).to.contain(`<p>Current temperature in London is 10</p>`);
+    expect(wrapper.html()).to.contain(`Current temperature in London is 10`);
   });
   it('should close the dialog', () => {
     const wrapper = mount(Dialog, options);
     wrapper.find('button').trigger('click');
     expect(wrapper.emitted().close).to.deep.equal([[]]);
   });
-  it('should close show success when input is success', () => {
+  it('should show success when input is success', () => {
     const wrapper = mount(Dialog, options);
-    expect(wrapper.html()).to.contain(`<span>Success</span>`);
-    expect(wrapper.html()).to.not.contain(`<span>Failure</span>`);
+    expect(wrapper.html()).to.contain(`Success`);
+    expect(wrapper.html()).to.not.contain(`Failure`);
   });
-  it('should close show failure when input is failure', () => {
+  it('should show failure when input is failure', () => {
     const wrapper = mount(Dialog, options);
-    wrapper.setData({success: false});
-    expect(wrapper.html()).to.contain(`<span>Failure</span>`);
-    expect(wrapper.html()).to.not.contain(`<span>Success</span>`);
+    wrapper.setData({isSuccess: false});
+    expect(wrapper.html()).to.contain(`Failure`);
+    expect(wrapper.html()).to.not.contain(`Success`);
   });
 });
