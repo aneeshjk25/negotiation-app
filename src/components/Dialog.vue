@@ -1,13 +1,15 @@
 <template>
   <div>
-    <strong>
+    <p>
+      <strong>
       <span v-if="isSuccess">Success</span>
       <span v-else>Failure</span>
     </strong>
+    </p>
     <p>Maximum offer was {{employerMaximumPay}}</p>
     <p>Minimum expected salary was {{employeeMinimumPay}}</p>
     <p>Current temperature in London is {{temperature}}</p>
-    <button @click="$emit('close')">Close</button>
+    <p><button @click="$emit('close')">Close</button></p>
   </div>
 </template>
 <script lang="ts">
@@ -38,3 +40,8 @@ interface Weather {
   };
 }
 </script>
+<style scoped>
+    p{
+      text-align: center;
+    }
+</style>
