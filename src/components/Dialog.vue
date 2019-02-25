@@ -18,10 +18,10 @@ export default class Tab extends Vue {
   @Prop() public success?: boolean;
   @Prop() public employerMaximumPay?: number;
   @Prop() public employeeMinimumPay?: number;
-  public mounted(){
+  public mounted() {
     this.showLondonWeather();
   }
-  private showLondonWeather() {
+  public showLondonWeather() {
     this.$http
       .get(
         'http://api.openweathermap.org/data/2.5/weather?q=London&appid=a81c43d837a5733c0d4c59394b9aaf44',
