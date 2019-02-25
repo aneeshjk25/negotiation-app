@@ -2,10 +2,10 @@
   <div id="app">
     <tabs>
       <tab name="first" :selected="true">
-        <input-salary @submit="addSalary($event, 'employeeMinimumPay')" v-if="!employeeMinimumPay"></input-salary>
+        <input-salary ref="first" @submit="addSalary($event, 'employeeMinimumPay')" v-if="!employeeMinimumPay"></input-salary>
       </tab>
       <tab name="second">
-        <input-salary @submit="addSalary($event, 'employerMaximumPay')" v-if="!employerMaximumPay"></input-salary>
+        <input-salary ref="second" @submit="addSalary($event, 'employerMaximumPay')" v-if="!employerMaximumPay"></input-salary>
       </tab>
     </tabs>
   </div>
@@ -37,16 +37,13 @@ export default class App extends Vue {
   }
   private negotiate() {
     if (this.employeeMinimumPay && this.employerMaximumPay) {
-      if (this.employeeMinimumPay <= this.employerMaximumPay) {
-        this.showDialog(true);
-      } else {
-        this.showDialog(false);
-      }
+      const isSuccess = this.employeeMinimumPay <= this.employerMaximumPay;
+      this.showDialog(isSuccess);
     }
   }
-  private showDialog(success: boolean) {
+  private showDialog(isSuccess: boolean) {
     this.$modal.show(Dialog, {
-      success,
+      isSuccess,
       employeeMinimumPay: this.employeeMinimumPay,
       employerMaximumPay: this.employerMaximumPay,
     });
