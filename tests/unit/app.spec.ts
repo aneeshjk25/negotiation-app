@@ -3,7 +3,7 @@ import { mount, shallowMount } from '@vue/test-utils';
 import App from '@/App.vue';
 import sinon from 'sinon';
 
-describe.only('App.vue', () => {
+describe('App.vue', () => {
     let options: {};
     let showDialog: sinon.SinonSpy;
     beforeEach(() => {
@@ -35,5 +35,15 @@ describe.only('App.vue', () => {
         (wrapper.vm.$refs.second as any).$emit('submit', 10);
         expect(showDialog.called).to.eql(true);
         expect(showDialog.calledWith(false)).to.eql(true);
+    });
+    it(`should show not show any dialog if only one input is entered`, () => {
+        const wrapper = shallowMount(App, options);
+        (wrapper.vm.$refs.first as any).$emit('submit', 20);
+        expect(showDialog.called).to.eql(false);
+    });
+    it(`should show not hide form when input is submitted`, () => {
+        const wrapper = shallowMount(App, options);
+        (wrapper.vm.$refs.first as any).$emit('submit', 20);
+        expect(wrapper.find('#first').exists()).to.eql(false);
     });
 });
