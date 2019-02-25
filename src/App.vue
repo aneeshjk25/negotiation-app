@@ -17,6 +17,7 @@ import Tabs from './components/Tabs.vue';
 import Tab from './components/Tab.vue';
 import InputSalary from './components/InputSalary.vue';
 import Dialog from './components/Dialog.vue';
+import { HttpResponse } from 'vue-resource/types/vue_resource';
 @Component({
   components: {
     Tabs,
@@ -50,6 +51,7 @@ export default class App extends Vue {
       employerMaximumPay: this.employerMaximumPay,
     });
   }
+
 }
 </script>
 
