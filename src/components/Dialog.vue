@@ -1,7 +1,7 @@
 <template>
   <div>
     <strong>
-      <span v-if="success">Success</span>
+      <span v-if="isSuccess">Success</span>
       <span v-else>Failure</span>
     </strong>
     <p>Maximum offer was {{employerMaximumPay}}</p>
@@ -15,7 +15,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class Tab extends Vue {
   public temperature: string = '';
-  @Prop() public success?: boolean;
+  @Prop() public isSuccess?: boolean;
   @Prop() public employerMaximumPay?: number;
   @Prop() public employeeMinimumPay?: number;
   public mounted() {

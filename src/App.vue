@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <tabs>
-      <tab name="first" :selected="true">
-        <input-salary id="first" ref="first" @submit="addSalary($event, 'employeeMinimumPay')" v-if="!employeeMinimumPay"></input-salary>
+      <tab name="Employer" :selected="true">
+        <input-salary id="employer" ref="employer" @submit="addSalary($event, 'employerMaximumPay')" v-if="!employerMaximumPay"></input-salary>
       </tab>
-      <tab name="second">
-        <input-salary ref="second" @submit="addSalary($event, 'employerMaximumPay')" v-if="!employerMaximumPay"></input-salary>
+      <tab name="Employee">
+        <input-salary ref="employee" @submit="addSalary($event, 'employeeMinimumPay')" v-if="!employeeMinimumPay"></input-salary>
       </tab>
     </tabs>
   </div>
